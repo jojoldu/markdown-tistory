@@ -1,0 +1,21 @@
+{
+  "name": "markdown-tistory",
+  "version": "1.0.0",
+  "description": "markdown supporter for tistory blog",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tistory",
+    "markdown",
+    "github"
+  ],
+  "author": "jojoldu",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "open": "0.0.5",
+    "request": "^2.79.0"
+  }
+}
