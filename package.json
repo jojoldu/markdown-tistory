@@ -16,6 +16,7 @@
   "dependencies": {
     "express": "^4.14.0",
     "open": "0.0.5",
-    "request": "^2.79.0"
+    "request": "^2.79.0",
+    "showdown": "^1.5.5"
   }
 }

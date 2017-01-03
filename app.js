@@ -7,52 +7,42 @@
 var request = require('request');
 var express = require('express');
 var open = require('open');
+var fs = require('fs');
+var path = require('path');
+var showdown  = require('showdown'),
+    converter = new showdown.Converter();
 
 var clientId;
 var clientSecret;
 var redirectUri = 'http://localhost:8080/callback';
+var jsonPath = '';
 
 var start = function() {
-
     var args = process.argv;
-    var isValidCommand = function () {
-        if(args.length <= 2) {
-            return false;
-        }
+    if(args[2] == 'write'){
+        write();
+    }else{
+        fs.readFile(jsonPath+'blog.json', 'utf8', function (err, data) {
+            if (err) throw err;
+            var blog = JSON.parse(data);
+            clientId = blog['client_id'];
+            clientSecret = blog['secret_key'];
 
-        if(args[2] == 'write'){
-            return true;
-        }else if(args[2] == 'init'){
-            if(args.length > 4){
-                return true;
-            }
-        }
-
-        return false;
-    };
-
-    if(!isValidCommand()){
-        console.log('도움말 출력');
-        process.exit();
-    }
-
-    var command = args[2];
-    if(command == 'write'){
-
-    }else if(command == 'init'){
-        clientId = args[3];
-        clientSecret = args[4];
-        init(clientId);
+            init();
+        });
     }
 };
 
-var init = function(clientId) {
+var init = function() {
     var startCallbackServer = function () {
         var app = express();
         app.listen(8080);
         app.get('/callback', function(req, res) {
-            console.log(req);
             var code = req.query.code;
+
+            if(code){
+                getAccessToken(code);
+            }
 
         });
     };
@@ -72,14 +62,40 @@ var init = function(clientId) {
         };
 
         request(options, function(error, response, body) {
-            console.log(body);
-            open(body.requestUrl);
+            if(error){
+                throw error;
+            }
+            var accessToken = body.split('=')[1];
+            if(accessToken){
+                fs.writeFile(jsonPath+'token.json', JSON.stringify({"accessToken":accessToken}), 'utf8', function(err){
+                    console.log('access token 발급 완료');
+                });
+            }
         });
 
     };
 
     openGetCode(clientId);
     startCallbackServer();
+};
+
+var write = function() {
+    var writeUrl = 'https://www.tistory.com/apis/post/write';
+    var uploadImageUrl = 'https://www.tistory.com/apis/post/attach';
+    var markdown, html;
+    fs.readFile('/Users/woowahan/markdown-tistory/마크다운테스트.md', 'utf8', function (err, data) {
+        markdown = data;
+        html = converter.makeHtml(markdown);
+        var options = {
+            url : writeUrl,
+            method : 'post',
+            form : {
+                "access_token": accessToken,
+                "visibility" : 0,
+                "content" = html
+            }
+        }
+    });
 };
 
 
