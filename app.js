@@ -12,8 +12,6 @@ var path = require('path');
 var showdown  = require('showdown'),
     converter = new showdown.Converter();
 
-var clientId;
-var clientSecret;
 var redirectUri = 'http://localhost:8080/callback';
 var jsonPath = '';
 
@@ -22,38 +20,43 @@ var start = function() {
     if(args[2] == 'write'){
         write();
     }else{
-        fs.readFile(jsonPath+'blog.json', 'utf8', function (err, data) {
-            if (err) throw err;
-            var blog = JSON.parse(data);
-            clientId = blog['client_id'];
-            clientSecret = blog['secret_key'];
-
-            init();
-        });
+        getBlogJson(downloadAccessToken);
     }
 };
 
-var init = function() {
-    var startCallbackServer = function () {
+var getBlogJson = function (callback) {
+    fs.readFile(jsonPath+'blog.json', 'utf8', function (err, data) {
+        if (err) throw err;
+        callback(JSON.parse(data));
+    });
+};
+
+var downloadAccessToken = function(blogJson) {
+
+    var startCallbackServer = function (blogJson) {
         var app = express();
         app.listen(8080);
         app.get('/callback', function(req, res) {
             var code = req.query.code;
 
             if(code){
-                getAccessToken(code);
+                getAccessToken(code, blogJson);
             }
 
         });
     };
 
-    var openGetCode = function(clientId) {
+    var openGetCode = function(blogJson) {
+        var clientId = blogJson['clientId'];
         var parameter = 'client_id='+clientId+'&redirect_uri='+redirectUri+'&response_type=code';
         var authorizeUrl = 'https://www.tistory.com/oauth/authorize?'+parameter;
         open(authorizeUrl);
     };
 
-    var getAccessToken = function(code) {
+    var getAccessToken = function(code, blogJson) {
+        var clientId = blogJson['clientId'];
+        var clientSecret = blogJson['clientSecret'];
+
         var parameter = 'client_id='+clientId+'&client_secret='+clientSecret+'&redirect_uri='+redirectUri+'&code='+code+'&grant_type=authorization_code';
 
         var options = {
@@ -69,33 +72,68 @@ var init = function() {
             if(accessToken){
                 fs.writeFile(jsonPath+'token.json', JSON.stringify({"accessToken":accessToken}), 'utf8', function(err){
                     console.log('access token 발급 완료');
+                    process.exit();
                 });
             }
         });
 
     };
 
-    openGetCode(clientId);
-    startCallbackServer();
+    openGetCode(blogJson);
+    startCallbackServer(blogJson);
 };
 
 var write = function() {
     var writeUrl = 'https://www.tistory.com/apis/post/write';
     var uploadImageUrl = 'https://www.tistory.com/apis/post/attach';
     var markdown, html;
-    fs.readFile('/Users/woowahan/markdown-tistory/마크다운테스트.md', 'utf8', function (err, data) {
-        markdown = data;
-        html = converter.makeHtml(markdown);
-        var options = {
-            url : writeUrl,
-            method : 'post',
-            form : {
-                "access_token": accessToken,
-                "visibility" : 0,
-                "content" = html
-            }
-        }
+    var fileName = '/Users/woowahan/markdown-tistory/마크다운테스트.md';
+
+    getBlogJson(function (blogJson) {
+
+        fs.readFile(jsonPath+'token.json', 'utf8', function (err, data) {
+            if (err) throw err;
+            var token = JSON.parse(data);
+            var accessToken = token.accessToken;
+
+            fs.readFile(fileName, 'utf8', function (err, data) {
+                markdown = data;
+                html = converter.makeHtml(markdown);
+
+                var blogName = blogJson.blogName;
+                var title= path.parse(fileName).name;
+
+                var options = {
+                    url : writeUrl,
+                    method : 'post',
+                    form : {
+                        "access_token": accessToken,
+                        "visibility" : 0,
+                        "blogName" : blogName,
+                        "targetUrl" : blogName,
+                        "title" : title,
+                        "content" : html
+                    }
+                };
+
+                request(options, function(error, response, body){
+                    if(error){
+                        throw error;
+                    }
+                    if(response.statusCode == 200){
+                        console.log('포스팅 되었습니다.');
+                    }else{
+                        console.log("code : "+response.statusCode+ " message : "+response.statusMessage);
+                    }
+
+                    process.exit();
+                });
+
+            });
+        });
     });
+
+
 };
 
 
