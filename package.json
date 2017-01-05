@@ -2,10 +2,14 @@
   "name": "markdown-tistory",
   "version": "1.0.0",
   "description": "markdown supporter for tistory blog",
-  "main": "app.js",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "markdown-tistory": "bin/markdown-tistory.js"
+  },
+  "preferGlobal": true,
   "keywords": [
     "tistory",
     "markdown",
