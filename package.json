@@ -19,7 +19,9 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.14.0",
+    "form-data": "^2.1.2",
     "open": "0.0.5",
+    "q": "^1.4.1",
     "request": "^2.79.0",
     "showdown": "^1.5.5"
   }
