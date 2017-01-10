@@ -1,6 +1,6 @@
 {
   "name": "markdown-tistory",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "markdown supporter for tistory blog",
   "main": "./lib/index.js",
   "scripts": {
@@ -21,7 +21,6 @@
     "express": "^4.14.0",
     "form-data": "^2.1.2",
     "open": "0.0.5",
-    "q": "^1.4.1",
     "request": "^2.79.0",
     "showdown": "^1.5.5"
   }
