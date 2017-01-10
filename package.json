@@ -1,6 +1,6 @@
 {
   "name": "markdown-tistory",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "markdown supporter for tistory blog",
   "main": "./lib/index.js",
   "scripts": {
@@ -15,7 +15,15 @@
     "markdown",
     "github"
   ],
-  "author": "jojoldu",
+  "author": {
+    "name": "jojoldu",
+    "email": "jojoldu@gmail.com",
+    "blog": "jojoldu.tistory.com"
+  },
+  "repository":{
+    "type": "git",
+    "url": "https://github.com/jojoldu/markdown-tistory"
+  },
   "license": "MIT",
   "dependencies": {
     "express": "^4.14.0",
