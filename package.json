@@ -20,7 +20,7 @@
     "email": "jojoldu@gmail.com",
     "blog": "jojoldu.tistory.com"
   },
-  "repository":{
+  "repository": {
     "type": "git",
     "url": "https://github.com/jojoldu/markdown-tistory"
   },
@@ -30,6 +30,8 @@
     "form-data": "^2.1.2",
     "open": "0.0.5",
     "request": "^2.79.0",
-    "showdown": "^1.5.5"
+    "showdown": "^1.5.5",
+    "to-markdown": "^3.0.3",
+    "xml2js": "^0.4.17"
   }
 }
