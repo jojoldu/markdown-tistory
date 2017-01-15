@@ -4,6 +4,8 @@ PC에 작성된 마크다운 파일을 티스토리 Oauth API를 통해 HTML로 
 ![티스토리](./images/티스토리.png)
 
 ### 설치
+현재 nodejs **6.9.2** 버전에서 개발되어있기에 하위 버전에서의 호환성은 테스트하지 못한 상태이다
+
 기존의 npm 패키지 설치와 동일하게 아래와 같은 커맨드로 설치가 가능하다.
 ```
 npm install -g markdown-tistory
