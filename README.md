@@ -5,33 +5,36 @@ PC에 작성된 마크다운 파일을 티스토리 Oauth API를 통해 HTML로 
 
 ### 버전별 변경사항
 
-* 0.4.0 : 기본기능 및 npm 등록
-* 0.5.0
+* 0.0.4 : 기본기능 및 npm 등록
+* 0.0.5
   - 컬러 console 효과
   - http, https 등의 이미지 주소는 컨버팅 대상에서 제외
   - 이미지 주소 찾지 못하는 경우 해당 이미지 제외하고 다음 프로세스 진행되도록 기능 수정
-  
+* 0.0.6
+  - multi markdown의 테이블 문법 적용
+  - 텍스트 내부에 code 블럭 문법 오류 수정
 
 ### 설치
-현재 nodejs **6.9.2** 버전에서 개발되어있기에 하위 버전에서의 호환성은 테스트하지 못한 상태이다
+현재 nodejs **6.9.2** 버전에서 개발되어있기에 6.x 버전 이상을 사용하길 권장드립니다. <br/>
 
-기존의 npm 패키지 설치와 동일하게 아래와 같은 커맨드로 설치가 가능하다.
+기존의 npm 패키지 설치와 동일하게 아래와 같은 커맨드로 설치가 가능합니다.
 ```
 npm install -g markdown-tistory
 ```
 
-설치 후에는 [티스토리 API](http://www.tistory.com/guide/api/oauth)에 임시 클라이언트 등록한다
+설치 후에는 [티스토리 API](http://www.tistory.com/guide/api/oauth)에 임시 클라이언트 등록합니다.
 ![티스토리 API](./images/API등록.png)
 
-등록후 발급되는 client id와 secret key를 사용할 예정이니 메모장에 복사
+등록후 발급되는 client id와 secret key를 사용할 예정이니 메모장에 복사하시고, <br/>
+
 ![티스토리 클라이언트](./images/티스토리클라이언트.png)
 
-명령 프롬프트(윈도우), 터미널(맥/리눅스)을 열어 ```markdown-tistory init``` 명령어를 입력하여, 안내대로 값을 입력한다
-* blog name : 본인의 블로그 주소 (ex: jojoldu.tistory.com의 jojoldu)
+명령 프롬프트(윈도우), 터미널(맥/리눅스)을 열어 ```markdown-tistory init``` 명령어를 입력하여, 안내대로 값을 입력합니다.
+* blog name : 본인의 블로그 주소 (ex: jojoldu.tistory.com의 jojoldu를 입력하시면 됩니다.)
 * client id : API에 등록한 client id
 * secret key : API에 등록한 secret key
 
-위 작업은 access token을 발급 받기 위한 작업으로, 처음 **1번만** 입력하면 된다.
+위 작업은 access token을 발급 받기 위한 작업으로, 처음 **1번만** 입력하면 된다. (한달 만료기간 있음. 1달에 1번 갱신은 필요)
 이후부터는 아래의 작업만 진행하면 된다.
 
 ### 사용
@@ -60,6 +63,9 @@ markdown-tistory write
 
 
 ### 업데이트 예정
+* [Github 마크다운 스타일](https://github.com/mixu/markdown-styles/tree/master/layouts/github/assets/css) 적용
+  - css를 티스토리에 api를 통해 등록 및 등록된 url 받기
+  - 마크다운 html전환후 해당 코드에 script로 위 url style을 append 하는 코드 추가
 * 등록된 게시글 마크다운 파일로 다운로드 기능
 * 등록된 게시글 수정 기능
 
