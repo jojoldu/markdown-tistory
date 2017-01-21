@@ -1,75 +1,42 @@
-<h3 id="1npminit">1. npm init</h3>
-<h1 id="1java26">[^1]Java (2/6) <!-- 주석부분--!></h1>
-<h2 id="522">5장 배열 (2/2)</h2>
-<h3 id="564">5.6.4 배열의 초기값</h3>
-<table>
-<thead>
-<tr>
-<th>데이터 타입</th>
-<th>초기값</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>byte[]</td>
-<td>0</td>
-</tr>
-<tr>
-<td>char[]</td>
-<td>'\u0000'</td>
-</tr>
-<tr>
-<td>short[]</td>
-<td>0</td>
-</tr>
-<tr>
-<td>int[]</td>
-<td>0</td>
-</tr>
-<tr>
-<td>long[]</td>
-<td>0L</td>
-</tr>
-<tr>
-<td>float[]</td>
-<td>0.0F</td>
-</tr>
-<tr>
-<td>double[]</td>
-<td>0.0</td>
-</tr>
-<tr>
-<td>boolean[]</td>
-<td>false</td>
-</tr>
-<tr>
-<td>클래스[]</td>
-<td>null</td>
-</tr>
-<tr>
-<td>인터페이스[]</td>
-<td>null</td>
-</tr>
-</tbody>
-</table>
-<p>[^1]: 수업 교재로는 <strong>&lt;이것이 자바다></strong> (신용권 저, 한빛미디어)를 사용한다.</p>
-<p>시작하기 앞서 <a href="https://nodejs.org/ko/">nodejs</a>가 기본적으로 설치되어 있어야함을 말씀드립니다. (너무당연한걸 얘기한건가요?) <br/>
-현재 예제는 6.9.2로 진행중이지만, 다른 버전이라도 크게 문제는 없도록 진행할 예정이니 공식 홈페이지에서 LTS 버전을 바로 받아서 설치하시면 될것 같습니다. <br/>
-nodejs 모듈를 만들 것이기 때문에 my-cli이란 이름의 폴더 하나를 생성하여 해당 폴더에서 터미널로 <code>npm init</code>을 실행시킵니다.
-<code>
-npm init
-</code></p>
-<p><img src="./images/npminit.png" alt="npm init" /></p>
-<p>엔터만 계속 쳐도 상관없지만 원하는 설정값이 있다면 하나씩 입력하셔도 무방합니다. <br/>
-<code>npm init</code>으로 <strong>package.json</strong>이 생성되었다면 바로 다음 단계로 넘어가시면 됩니다.</p>
-<h3 id="2">2. 커맨드 라인 옵션 파싱하기</h3>
-<p>npm이나 다른 node 모듈들을 사용할 때 보면 여러 옵션을 주면서 스크립트를 실행시키는 것이 기억나시나요? <br/>
-이렇게 커맨드라인 입력시 사용되는 옵션을 쉽게 구현하도록 도와주는 모듈이 바로 <a href="https://github.com/tj/commander.js">commander.js</a>입니다. <br/>
-바로 설치와 사용을 해보겠습니다.</p>
-<p><code>
-npm install --save commander
-</code>
-그리고 프로젝트 폴더에 app.js 파일을 하나 만들어 보겠습니다. <br/>
-현재까지의 프로젝트 구조는 아래와 같습니다.</p>
-<p><img src="./images/프로젝트구조.png" alt="프로젝트구조" /></p>
-<p>(폴더구조) <br/></p>
+# [^1]Java (2/6) <!-- 주석부분--!>
+
+## 5장 배열 (2/2)
+
+### 5.6.4 배열의 초기값
+
+<!-- 아래부터 표 부분 --!>
+데이터 타입|초기값
+---|---
+byte[]|0
+char[]|'\u0000'
+short[]|0
+int[]|0
+long[]|0L
+float[]|0.0F
+double[]|0.0
+boolean[]|false
+클래스[]|null
+인터페이스[]|null
+
+명령 프롬프트(윈도우), 터미널(맥/리눅스)을 열어 ```markdown-tistory init``` 명령어를 입력하여, 안내대로 값을 입력합니다.
+* blog name : 본인의 블로그 주소 (ex: jojoldu.tistory.com의 jojoldu를 입력하시면 됩니다.)
+* client id : API에 등록한 client id
+* secret key : API에 등록한 secret key
+
+위 작업은 access token을 발급 받기 위한 작업으로, 처음 **1번만** 입력하면 된다. (한달 만료기간 있음. 1달에 1번 갱신은 필요)
+이후부터는 아래의 작업만 진행하면 된다.
+
+### 사용
+작성된 마크다운 파일이 있는 위치에서 명령 프롬프트(윈도우), 터미널(맥/리눅스)를 열어 아래 명령어 입력
+```
+markdown-tistory write
+```
+
+등록이 성공하면 해당 내용은 **비공개**로 포스팅 되니, 본인 블로그의 관리자 페이지로 이동하여 게시글을 공개로 전환한다.
+
+### 주의사항
+* 마크다운에서 사용되는 이미지 위치는 마크다운 파일을 기준으로 작성되어야 한다.
+
+**Good**
+
+![티스토리](./images/티스토리.png)
