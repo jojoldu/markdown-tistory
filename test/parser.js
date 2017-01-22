@@ -21,10 +21,12 @@ const pilcrow = '.markdown-body{padding-left:30px}.markdown-body h1,.markdown-bo
 fs.readFile(path.join(__dirname, "./PARSER.md"), 'utf8', function (err, data) {
     const articleStart = '<article class="markdown-body>',
         articleEnd = '</article>';
-    
+
     console.log(converter.makeHtml(data));
     const parserPath = path.join(__dirname, "./parser.html");
-    fs.writeFile(parserPath, converter.makeHtml(data), 'utf8', function(err){
+    const body = converter.makeHtml(data);
+    const html = articleStart+body+articleEnd;
+    fs.writeFile(parserPath, html, 'utf8', function(err){
         if(err){
             throw err;
         }
