@@ -29,7 +29,7 @@ boolean[]|false
 ### 사용
 작성된 마크다운 파일이 있는 위치에서 명령 프롬프트(윈도우), 터미널(맥/리눅스)를 열어 아래 명령어 입력
 ```
-markdown-tistory write
+markdown-tistory write markdown-tistory write markdown-tistory write markdown-tistory write markdown-tistory write markdown-tistory write markdown-tistory write markdown-tistory write
 ```
 
 등록이 성공하면 해당 내용은 **비공개**로 포스팅 되니, 본인 블로그의 관리자 페이지로 이동하여 게시글을 공개로 전환한다.
@@ -39,4 +39,4 @@ markdown-tistory write
 
 **Good**
 
-![티스토리](./images/티스토리.png)
+![티스토리](../images/티스토리.png)
