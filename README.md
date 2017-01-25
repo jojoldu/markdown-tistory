@@ -71,9 +71,6 @@ markdown-tistory write
 
 
 ### 업데이트 예정
-* [Github 마크다운 스타일](https://github.com/mixu/markdown-styles/tree/master/layouts/github/assets/css) 적용
-  - css를 티스토리에 api를 통해 등록 및 등록된 url 받기
-  - 마크다운 html전환후 해당 코드에 script로 위 url style을 append 하는 코드 추가
 * 등록된 게시글 마크다운 파일로 다운로드 기능
 * 등록된 게시글 수정 기능
 
