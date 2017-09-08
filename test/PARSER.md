@@ -1,22 +1,18 @@
-# [^1]Java (2/6) <!-- 주석부분--!>
+# Java (2/6) 
+
+
 
 ## 5장 배열 (2/2)
 
 ### 5.6.4 배열의 초기값
 
-<!-- 아래부터 표 부분 --!>
-데이터 타입|초기값
----|---
-byte[]|0
-char[]|'\u0000'
-short[]|0
-int[]|0
-long[]|0L
-float[]|0.0F
-double[]|0.0
-boolean[]|false
-클래스[]|null
-인터페이스[]|null
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
 
 명령 프롬프트(윈도우), 터미널(맥/리눅스)을 열어 ```markdown-tistory init``` 명령어를 입력하여, 안내대로 값을 입력합니다.
 * blog name : 본인의 블로그 주소 (ex: jojoldu.tistory.com의 jojoldu를 입력하시면 됩니다.)
