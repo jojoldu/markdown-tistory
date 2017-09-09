@@ -4,7 +4,7 @@
  * Github : http://github.com/jojoldu
  */
 
-const githubStyle = require('../lib/github-style');
+const githubStyle = require('../lib/markdown-template');
 const fs = require('fs');
 const path = require('path');
 const open = require('open');

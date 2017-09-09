@@ -3,8 +3,3 @@
  * Blog : http://jojoldu.tistory.com
  * Github : http://github.com/jojoldu
  */
-
-
-const myPath = require('../lib/my-path');
-
-console.log(myPath.getMyRootPath());
