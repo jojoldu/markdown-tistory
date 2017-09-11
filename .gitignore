@@ -1,7 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
 /node_modules
+/bin/npm-debug.log
+blog.md
+
+## OAuth 관련 정보
 blog.json
 token.json
-blog.md
-/bin/npm-debug.log
+/test/token-generator-console-test.js
