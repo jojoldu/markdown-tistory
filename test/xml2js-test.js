@@ -4,7 +4,7 @@
  * Github : http://github.com/jojoldu
  */
 
-const parseString = require('xml2js').parseString;
+const xml2js = require('xml2js-es6-promise');
 const assert  = require('assert');
 
 describe('xml2js 테스트', () => {
@@ -13,10 +13,11 @@ describe('xml2js 테스트', () => {
             '<tistory><status>400</status><error_message>access_token 이 유효하지 않습니다.</error_message></tistory>\n';
 
         it('accessToken이 유효하지않다로 파싱한다', (done) => {
-            parseString(xml, function (err, result) {
-                assert.equal(result.tistory['error_message'], 'access_token 이 유효하지 않습니다.');
-                done();
-            });
+            xml2js(xml)
+                .then((json) => {
+                    assert.equal(json.tistory['error_message'], 'access_token 이 유효하지 않습니다.');
+                    done();
+                });
         });
     });
 
