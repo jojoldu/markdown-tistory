@@ -8,26 +8,45 @@ const restTemplate = require('../lib/rest-template');
 const tokenManager = require('../lib/token-manager');
 const assert = require('assert');
 
-describe('rest-template', ()=> {
-    describe('uploadContent로 블로그에 포스팅된다', () => {
-        it('README.md의 내용이 포스팅 된다.', (done) => {
-            const markdown = '### Hello jojoldu World';
-            const blogName = 'jojoldu';
-            const title = 'Hello jojoldu World';
+describe('블로그에 포스팅된다', () => {
+    const MARKDOWN_TEXT = '### Hello jojoldu World';
+    const MARKDOWN_TITLE = 'Hello jojoldu World';
+    const BLOG_NAME = 'jojoldu';
+    const TARGET_URL = 'jojoldu';
 
-            tokenManager.getAccessToken()
-                .then((accessToken) => {
-                    return restTemplate.uploadContent(markdown, accessToken, blogName, title);
-                })
-                .then((response) => {
-                    assert.equal(response.statusCode, 200);
-                    done();
-                });
-        });
+    it('README.md의 내용이 포스팅 된다.', (done) => {
+        tokenManager.getAccessToken()
+            .then((json) => {
+                const parameters = {
+                    accessToken: json.accessToken,
+                    blogName:BLOG_NAME,
+                    targetUrl:TARGET_URL
+                };
+                return restTemplate.uploadContent(MARKDOWN_TEXT, MARKDOWN_TITLE, parameters);
+            })
+            .then((response) => {
+                assert.equal(response.status[0], 200);
+                done();
+            });
     });
 
-    describe('write로 블로그에 포스팅된다', () => {
-        it('markdownFile, blogJson, accessToken이 모두 필요하다.', (done) => {
-        });
+    it('markdownText, blogJson, accessToken이 모두 필요하다.', (done) => {
+        tokenManager.getAccessToken()
+            .then((json)=>{
+                const blogJson = {
+                    blogName:BLOG_NAME,
+                    targetUrl:TARGET_URL
+                };
+                const markdownFile = {
+                    title:MARKDOWN_TITLE,
+                    data: MARKDOWN_TEXT
+                };
+
+                return restTemplate.write(markdownFile, blogJson, json.accessToken);
+            })
+            .then((response) => {
+                assert.equal(response.status[0], 200);
+                done();
+            });
     });
 });
