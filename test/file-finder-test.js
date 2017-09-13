@@ -23,6 +23,7 @@ describe('file-finder 테스트', () => {
             fileFinder.findMarkdownFile('/Users/woowahan/Documents/git/markdown-tistory/test/PARSER.md')
                 .then((markdownFile) => {
                     assert.equal(markdownFile.title, 'PARSER');
+                    assert.equal(markdownFile.location, '/Users/woowahan/Documents/git/markdown-tistory/test/PARSER.md');
                     done();
                 });
         });
