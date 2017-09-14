@@ -6,4 +6,4 @@
 ## OAuth 관련 정보
 blog.json
 token.json
-test/token-manager-console-test.js
+/test
