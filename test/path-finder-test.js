@@ -5,4 +5,4 @@
  */
 
 const pathFinder = require('../lib/path-finder');
-console.log(pathFinder.getRoot());
+console.log(pathFinder.getJsonPath());
