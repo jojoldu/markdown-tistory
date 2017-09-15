@@ -9,13 +9,13 @@ const tokenManager = require('../lib/token-manager');
 
 const assert = require('assert');
 
-describe('image-converter', ()=>{
+describe('image-manager', ()=>{
     describe('텍스트내 이미지 Path', ()=>{
         const markdownPath = '/Users/woowahan/Documents/git/markdown-tistory/test/PARSER.md';
 
         it('상대경로는 마크다운 파일 기준으로 계산한다', ()=>{
-            const image = '![](../images/tistory.png)';
-            const result = imageManager.extractPath(markdownPath, image);
+            const image = '../images/tistory.png';
+            const result = imageManager.exchangeRealPath(image, markdownPath);
             assert.equal(result, '/Users/woowahan/Documents/git/markdown-tistory/images/tistory.png');
         });
 

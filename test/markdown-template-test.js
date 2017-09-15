@@ -5,7 +5,20 @@
  */
 
 const markdownTemplate = require('../lib/markdown-template');
+const fileFinder = require('../lib/file-finder');
 const assert = require('assert');
+
+const HTML_CODE = '<article class="markdown-body entry-content" itemprop="text"> <h1 id="hello-world--script-async-srcpagead2googlesyndicationcompageadjsadsbygooglejsscript">Hello World  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script></h1>\n' +
+    '<!-- 반응형 -->\n' +
+    '<p><ins class="adsbygoogle"\n' +
+    '     style="display:block"\n' +
+    '     data-ad-client="ca-pub-5349709105365293"\n' +
+    '     data-ad-slot="5488859360"\n' +
+    '     data-ad-format="auto"></ins></p>\n' +
+    '<script>\n' +
+    '(adsbygoogle = window.adsbygoogle || []).push({});\n' +
+    '</script>\n' +
+    '<p><code>java String a="10"</code></p> </article>';
 
 const ADSENSE_CODE = '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\n' +
     '<!-- 반응형 -->\n' +
@@ -19,7 +32,7 @@ const ADSENSE_CODE = '<script async src="//pagead2.googlesyndication.com/pagead/
     '</script>';
 
 describe('구글광고코드가 추가된다', ()=>{
-    describe('템플릿 코드를 구글광고 코드로 교체한다', ()=>{
+    describe('템플릿 코드를 문자열 구글광고 코드로 교체한다', ()=>{
         it('[[ad]] 코드는 입력한 구글 광고 코드로 교체된다', ()=>{
             const markdownText = '[[ad]]';
             const exchangedText = markdownTemplate.exchangeGoogleAdsense(markdownText, ADSENSE_CODE);
@@ -32,20 +45,25 @@ describe('구글광고코드가 추가된다', ()=>{
             assert.equal(exchangedText, '# Hello World  '+ADSENSE_CODE+'   ```java String a="10"```');
         });
 
-        it('마크다운 템플릿된 결과에 구글광고코드가 있다.', ()=>{
+        it('마크다운 템플릿된 결과에 구글광고코드가 있다.', (done)=>{
             const markdownText = '# Hello World  [[ad]]   ```java String a="10"```';
-            const templatedText = markdownTemplate.template(markdownText, ADSENSE_CODE);
-            assert.equal(templatedText, '<article class="markdown-body entry-content" itemprop="text"> <h1 id="hello-world--script-async-srcpagead2googlesyndicationcompageadjsadsbygooglejsscript">Hello World  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script></h1>\n' +
-                '<!-- 반응형 -->\n' +
-                '<p><ins class="adsbygoogle"\n' +
-                '     style="display:block"\n' +
-                '     data-ad-client="ca-pub-5349709105365293"\n' +
-                '     data-ad-slot="5488859360"\n' +
-                '     data-ad-format="auto"></ins></p>\n' +
-                '<script>\n' +
-                '(adsbygoogle = window.adsbygoogle || []).push({});\n' +
-                '</script>\n' +
-                '<p><code>java String a="10"</code></p> </article>');
+            markdownTemplate.template(markdownText, ADSENSE_CODE)
+                .then((templatedText)=>{
+                    assert.equal(templatedText, HTML_CODE);
+                    done();
+                });
+        });
+    });
+
+    describe('ad.txt에 있는 코드로 [[ad]]를 교체한다', ()=>{
+        it('ad.txt내용을 읽어온다', (done)=>{
+            fileFinder.findFileFromCurrent('ad.txt')
+                .then((data)=>{
+                    console.log(data);
+                    assert.equal(data, ADSENSE_CODE);
+                    done();
+                });
         });
     });
 });
+
