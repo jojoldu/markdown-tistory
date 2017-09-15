@@ -4,7 +4,7 @@
   "description": "markdown supporter for tistory blog",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha $(find ./ -name '*.js') --recursive -w"
+    "test": "node_modules/.bin/mocha $(find ./test -name '*.js') --recursive -w"
   },
   "bin": {
     "markdown-tistory": "bin/markdown-tistory.js"
