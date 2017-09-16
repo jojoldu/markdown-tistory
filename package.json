@@ -1,10 +1,11 @@
 {
   "name": "markdown-tistory",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "markdown supporter for tistory blog",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha $(find ./test -name '*.js') --recursive -w"
+    "test": "node_modules/.bin/mocha $(find ./test -name '*.js') --recursive -w",
+    "deploy": "npm publish"
   },
   "bin": {
     "markdown-tistory": "bin/markdown-tistory.js"
