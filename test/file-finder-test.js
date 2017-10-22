@@ -36,7 +36,6 @@ describe('file-finder 테스트', () => {
                     assert.equal(markdownFile.title, 'PARSER');
                     done();
                 });
-
         });
     });
 });

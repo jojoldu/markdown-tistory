@@ -20,8 +20,8 @@ describe('image-manager', ()=>{
         });
 
         it('Path의 마지막 파일명을 추출한다', ()=>{
-           const parse = markdownPath.split("\/");
-           assert.equal(parse[parse.length-1], 'PARSER.md');
+            const parse = markdownPath.split("\/");
+            assert.equal(parse[parse.length-1], 'PARSER.md');
         });
 
         it('.으로 시작하는 Path', ()=>{
@@ -55,7 +55,21 @@ describe('image-manager', ()=>{
                     done();
                     throw err;
                 });
+        });
+    });
 
+    describe('removeFileName을 사용하면 파일 이름을 제외한 나머지 주소가 전달된다', ()=>{
+        it('파일명만 입력되면 현재위치를 기준으로 한다', () => {
+            const filePath = 'README.md';
+            const result = imageManager.removeFileName(filePath);
+            assert.equal(result, './');
+        });
+
+        it('파일위치가 입력되면 파일명을 제외한 나머지 Path가 전달된다', () => {
+            const prefix = '/Users/woowahan/Documents/git/markdown-tistory/';
+            const filePath = prefix + 'README.md';
+            const result = imageManager.removeFileName(filePath);
+            assert.equal(result, prefix);
         });
     });
 });

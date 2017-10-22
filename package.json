@@ -1,6 +1,6 @@
 {
   "name": "markdown-tistory",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "markdown supporter for tistory blog",
   "main": "./lib/index.js",
   "scripts": {
