@@ -101,7 +101,6 @@ markdown-tistory write
 
 ```
 markdown-tistory write /Users/woowahan/Documents/git/markdown-tistory/README.md
-
 ```
 
 3. 현재 터미널 위치의 상대주소로 마크다운 파일 지정
@@ -148,12 +147,12 @@ markdown-tistory ad 에디터명
 
 > 아직 구글 애드센스 계정이 없으시다면 [링크](http://superfelix.tistory.com/78)를 참고하여 가입해주세요.  
 
-## Precautions
+## 주의사항
 
 * 문장의 **첫 글자에 코드 문법이 있으면 파싱 에러**가 발생합니다.
   * 띄어쓰기 한번을 해주세요
 
-* ```sudo```를 통해 명령어를 실행하면 이후 에디어터에서 저장이 안됩니다
+* ```sudo```를 통해 명령어를 실행하면 이후 에디터에서 저장이 안됩니다
   * ```init```, ```token```등 에디터를 통해 수정하는 기능들은 ```sudo``` 없이 실행해주세요
 
 * 게시글의 제목은 **마크다운 파일명**을 기준으로 합니다.
