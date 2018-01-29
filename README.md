@@ -6,7 +6,7 @@
 [![npm](https://img.shields.io/npm/l/markdown-tistory.svg)]()
 
 
-PC에 작성된 마크다운 파일을 티스토리 OAuth API를 통해 HTML(+구글 애드센스)로 변환하여 포스팅해주는 스크립트
+PC에 작성된 마크다운 파일을 티스토리 OAuth API를 통해 HTML, 이미지, 구글 광고로 변환하여 포스팅해주는 스크립트
 
 ![티스토리](./images/티스토리.png)
 
