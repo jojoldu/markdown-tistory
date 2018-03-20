@@ -54,7 +54,7 @@ PC에 설치된 에디터의 종류에 따라 입력하시면 됩니다.
 Ex)
 
 ```
-markdown-tistory init code
+markdown-tistory init vim
 ```
 
 오픈된 파일에는 다음과 같은 값을 등록하시면 됩니다.
