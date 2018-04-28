@@ -13,8 +13,8 @@ PC에 작성된 마크다운 파일을 티스토리 OAuth API를 통해 HTML, �
 ## Install
 
 현재 nodejs **6.9.2** 버전에서 개발되어있기에 6.x 버전 이상을 사용하길 권장드립니다.  
-  
-  
+
+
 기존의 npm 패키지 설치와 동일하게 아래와 같은 커맨드로 설치가 가능합니다.
 
 ```
@@ -37,7 +37,7 @@ npm install -g markdown-tistory
 ![티스토리 클라이언트](./images/티스토리클라이언트.png)
 
 명령 프롬프트(윈도우), 터미널(맥/리눅스)을 열어 ```markdown-tistory init 에디터``` 명령어를 입력하여, 값을 등록합니다.  
-  
+
 아래중 하나의 에디터는 설치되어 있어야 합니다.
 
 * sublime
@@ -50,7 +50,7 @@ npm install -g markdown-tistory
 * emacs
 
 PC에 설치된 에디터의 종류에 따라 입력하시면 됩니다.  
-  
+
 Ex)
 
 ```
@@ -69,7 +69,7 @@ markdown-tistory init vim
 아래의 명령어를 입력합니다.
 
 ```
-markdow-tistroy token
+markdown-tistory token
 ```
 
 브라우저가 열려 다음과 같이 OAuth2 인증이 등장합니다.
@@ -81,7 +81,7 @@ markdow-tistroy token
 ![issue_token](./images/issue_token.png)
 
 이제 인증키는 모두 발급 받았습니다.  
-  
+
 > 티스토리 AccessToken은 **1개월의 유효기간**을 갖고 있습니다.  
 한달이 지나서 키가 만료되었다는 메세지가 보이면 다시 키를 발급(```markdown-tistory token```) 받으시면 됩니다.
 
@@ -177,11 +177,11 @@ markdown-tistory ad 에디터명
   
   * 이미지 상대경로외에 절대경로 검색 기능 추가
     * 기존에 마크다운 파일 위치를 기준으로만 가능했던 이미지 등록이 절대주소도 가능하도록 수정
-       
+    
   * 마크다운 CSS 적용 스크립트 제거
     * 해당 스크립트로 인해 RSS가 깨짐
     * 티스토리에 직접 CSS 파일 추가하기를 권장
-    
+  
 * 0.0.8
   - **별도의 css** 추가없이 마크다운 스타일 적용
   - blog.json & token.json 홈 디렉토리에 생성 및 읽기로 변경 (업데이트시마다 init 했던 점 수정)
@@ -200,7 +200,7 @@ markdown-tistory ad 에디터명
 
 * 0.0.4
   - 기본기능 및 npm 등록
-   
+  
 
 ## TO DO
 
