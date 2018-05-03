@@ -30,9 +30,11 @@ npm install -g markdown-tistory
 
 먼저 [티스토리 API](http://www.tistory.com/guide/api/oauth)로 이동하여 임시 클라이언트를 등록합니다.
 
+(주의 : 서비스 URL 과 callback 경로에는 꼭 스크린샷처럼 http://localhost:5000/callback 으로 적어주세요.)
+
 ![티스토리 API](./images/API등록.png)
 
-등록후 발급되는 client id와 secret key를 사용할 예정이니 메모장에 복사하시고
+등록 후 발급되는 client id와 secret key를 사용할 예정이니 메모장에 복사하시고
 
 ![티스토리 클라이언트](./images/티스토리클라이언트.png)
 
@@ -51,19 +53,21 @@ npm install -g markdown-tistory
 
 PC에 설치된 에디터의 종류에 따라 입력하시면 됩니다.  
 
-Ex)
+예제)
 
 ```
-markdown-tistory init vim
+markdown-tistory init code
 ```
 
-오픈된 파일에는 다음과 같은 값을 등록하시면 됩니다.
+오픈 된 파일에는 다음과 같은 값을 등록하시면 됩니다.
+(스크린샷은 Visual Studio Code 에디터 입니다.)
 
 ![blog_json](./images/blog_json.png)
 
-* blog name : 본인의 블로그 주소 (ex: jojoldu.tistory.com의 jojoldu를 입력하시면 됩니다.)
-* client id : API에 등록한 client id
-* secret key : API에 등록한 secret key
+* blogName : 본인의 블로그 주소 (ex: jojoldu.tistory.com의 jojoldu를 입력하시면 됩니다.)
+* clientId : API에 등록한 client id
+* secretKey : API에 등록한 secret key
+* adsenseCode : 구글광고 코드
 
 해당 파일 저장후, AccessToken을 발급 받겠습니다.  
 아래의 명령어를 입력합니다.
@@ -115,8 +119,10 @@ markdown-tistory write ./README.md
 
 이미 만들어진 blog.json 정보를 수정하고 싶다면 아래의 명령어를 사용하시면 됩니다.
 
+('blog.json' 은 유저 홈 디렉토리에 생성이 됩니다.) 
+
 ```
-markdown-tistory show 에디터종류
+markdown-tistory show 에디터
 ```
 
 생성된 blog.json이 지정한 에디터에 오픈됩니다.
@@ -127,11 +133,13 @@ markdown-tistory show 에디터종류
 먼저 아래 명령어를 입력합니다.
 
 ```
-markdown-tistory ad 에디터명
+markdown-tistory ad 에디터
 ```
 
 ```ad.txt```파일이 하나 생성되어 에디터로 표시됩니다.  
 아래처럼 본인의 애드센스 코드를 입력합니다.
+
+('ad.txt' 은 유저 홈 디렉토리에 생성이 됩니다.)
 
 ![ad_txt](./images/ad_txt.png)
 
