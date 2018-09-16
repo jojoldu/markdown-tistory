@@ -18,17 +18,6 @@ describe('file-finder 테스트', () => {
         });
     });
 
-    describe('절대 경로 위치에서 파일 찾기', () => {
-        it('PARSER.md 파일명을 PARSER로 찾는다.', (done) => {
-            fileFinder.findMarkdownFile('/Users/woowahan/Documents/git/markdown-tistory/test/PARSER.md')
-                .then((markdownFile) => {
-                    assert.equal(markdownFile.title, 'PARSER');
-                    assert.equal(markdownFile.location, '/Users/woowahan/Documents/git/markdown-tistory/test/PARSER.md');
-                    done();
-                });
-        });
-    });
-
     describe('상대 위치에서 파일 찾기', () => {
         it('PARSER.md 파일명을 PARSER로 찾는다.', (done) => {
             fileFinder.findMarkdownFile('./test/PARSER.md')
