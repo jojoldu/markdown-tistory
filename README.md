@@ -28,7 +28,9 @@ npm install -g markdown-tistory
 
 ### 키 발급
 
-먼저 [티스토리 API](http://www.tistory.com/guide/api/oauth)로 이동하여 임시 클라이언트를 등록합니다.
+
+
+먼저 [티스토리 API](https://www.tistory.com/guide/api/manage/register)로 이동하여 임시 클라이언트를 등록합니다.
 
 (주의 : 서비스 URL 과 callback 경로에는 꼭 스크린샷처럼 http://localhost:5000/callback 으로 적어주세요.)
 
@@ -218,7 +220,7 @@ markdown-tistory ad 에디터
 * 이글루스 블로그 추가
 
 ## 참고
-* [티스토리 API](http://www.tistory.com/guide/api/post)
+* [티스토리 API](https://tistory.github.io/document-tistory-apis/)
 * [Nodejs Path 가이드](https://nodejs.org/api/path.html#path_windows_vs_posix)
 * [Node form-data](https://github.com/form-data/form-data)
 * [Promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)
