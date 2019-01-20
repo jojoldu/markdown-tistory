@@ -10,25 +10,23 @@ PC에 작성된 마크다운 파일을 티스토리 OAuth API를 통해 HTML, �
 
 ![티스토리](./images/티스토리.png)
 
-## Install
+## 1. Install
 
 현재 nodejs **6.9.2** 버전에서 개발되어있기에 6.x 버전 이상을 사용하길 권장드립니다.  
 
 
 기존의 npm 패키지 설치와 동일하게 아래와 같은 커맨드로 설치가 가능합니다.
 
-```
+```bash
 npm install -g markdown-tistory
 ```
 
-## Usage
+## 2. Usage
 
 기본적으로 OAuth 키가 발급 되어야 사용 가능합니다.  
 **가장 먼저 키 발급**을 해주세요
 
-### 키 발급
-
-
+### 2-1. 키 발급
 
 먼저 [티스토리 API](https://www.tistory.com/guide/api/manage/register)로 이동하여 임시 클라이언트를 등록합니다.
 
@@ -57,7 +55,7 @@ PC에 설치된 에디터의 종류에 따라 입력하시면 됩니다.
 
 예제)
 
-```
+```bash
 markdown-tistory init code
 ```
 
@@ -74,7 +72,7 @@ markdown-tistory init code
 해당 파일 저장후, AccessToken을 발급 받겠습니다.  
 아래의 명령어를 입력합니다.
 
-```
+```bash
 markdown-tistory token
 ```
 
@@ -92,32 +90,51 @@ markdown-tistory token
 한달이 지나서 키가 만료되었다는 메세지가 보이면 다시 키를 발급(```markdown-tistory token```) 받으시면 됩니다.
 
 
-### 포스팅
+### 2-2. 글 등록
 
 마크다운 파일 **위치를 지정하면** 지정된 위치의 해당 파일을,  
 **위치를 지정하지 않으면 현재 위치**에서 해당 파일을 찾아 포스팅합니다.  
 
 1. 현재 위치의 마크다운 파일
 
-```
+```bash
 markdown-tistory write
 ```
 
 2. 절대주소로 마크다운 파일 지정
 
-```
+```bash
 markdown-tistory write /Users/woowahan/Documents/git/markdown-tistory/README.md
 ```
 
 3. 현재 터미널 위치의 상대주소로 마크다운 파일 지정
 
-```
+```bash
 markdown-tistory write ./README.md
 ```
 
 **비공개**로 포스팅 되니, 본인 블로그의 관리자 페이지로 이동하여 게시글을 공개로 전환하시면 됩니다.
 
-### 블로그 정보 수정
+### 2-3. 등록된 글 수정
+
+글 수정은 **포스팅 ID**가 꼭 필요합니다.
+
+![postid](./images/postid.png)
+
+(여기서 379가 포스팅Id입니다.)  
+  
+
+```bash
+markdown-tistory update 파일위치 포스팅ID
+```
+
+만약 파일위치를 입력하지 않으시면, **현재 위치의 마크다운 파일**이 선택됩니다.
+
+```bash
+markdown-tistory update 포스팅ID
+```
+
+### 2-4. 블로그 정보 수정
 
 이미 만들어진 blog.json 정보를 수정하고 싶다면 아래의 명령어를 사용하시면 됩니다.
 
@@ -129,7 +146,7 @@ markdown-tistory show 에디터
 
 생성된 blog.json이 지정한 에디터에 오픈됩니다.
 
-### 구글 애드센스
+### 2-5. 구글 애드센스
 
 본인의 구글 애드센스코드를 미리 등록해야만 변환이 됩니다.  
 먼저 아래 명령어를 입력합니다.
@@ -157,7 +174,7 @@ markdown-tistory ad 에디터
 
 > 아직 구글 애드센스 계정이 없으시다면 [링크](http://superfelix.tistory.com/78)를 참고하여 가입해주세요.  
 
-## 주의사항
+## 3. 주의사항
 
 * 문장의 **첫 글자에 코드 문법이 있으면 파싱 에러**가 발생합니다.
   * 띄어쓰기 한번을 해주세요
@@ -168,7 +185,7 @@ markdown-tistory ad 에디터
 * 게시글의 제목은 **마크다운 파일명**을 기준으로 합니다.
 
 
-## Release Note
+## 4. Release Note
 
 * 0.1.6
     * 포스팅 수정 기능 추가
