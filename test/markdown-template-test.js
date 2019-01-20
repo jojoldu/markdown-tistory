@@ -57,9 +57,8 @@ describe('구글광고코드가 추가된다', ()=>{
 
     describe('ad.txt에 있는 코드로 [[ad]]를 교체한다', ()=>{
         it('ad.txt내용을 읽어온다', (done)=>{
-            fileFinder.findFileFromCurrent('ad.txt')
+            fileFinder.findFileFromCurrent('test/ad.txt')
                 .then((data)=>{
-                    console.log(data);
                     assert.equal(data, ADSENSE_CODE);
                     done();
                 });
