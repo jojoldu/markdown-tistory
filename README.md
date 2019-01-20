@@ -170,6 +170,10 @@ markdown-tistory ad 에디터
 
 ## Release Note
 
+* 0.1.6
+    * 포스팅 수정 기능 추가
+    * Promise -> async/await로 코드 개선
+    
 * 0.1.5
     * 마크다운 파일 내에 이미지 경로만 있어도 정상 업로드 되도록 수정
     
