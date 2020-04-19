@@ -27,7 +27,7 @@
 }
  * @type {PostListResponseDto}
  */
-module.exports = class PostListResponseDto {
+class PostListResponseDto {
     constructor(tistory) {
         this.tistory = tistory;
     }
@@ -40,3 +40,5 @@ module.exports = class PostListResponseDto {
         return this.status === "200";
     }
 }
+
+export {PostListResponseDto};

@@ -1,4 +1,4 @@
-const PostListResponseDto = require('src/main/api/post/list/PostListResponseDto');
+import {PostListResponseDto} from 'src/main/api/post/list/PostListResponseDto'
 
 test("응답 객체의 상태를 dto로 변환한다", () => {
     const apiResponse = {
