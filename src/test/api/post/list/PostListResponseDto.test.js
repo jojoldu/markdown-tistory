@@ -26,6 +26,6 @@ test("응답 객체의 상태를 dto로 변환한다", () => {
         }
     };
 
-    const dto = new PostListResponseDto(apiResponse);
-    expect(dto.isNotOk()).toBe(true);
+    const dto = new PostListResponseDto(apiResponse.tistory);
+    expect(dto.isOk()).toBe(true);
 })

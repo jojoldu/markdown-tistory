@@ -29,13 +29,22 @@
  */
 class PostListResponseDto {
     constructor(tistory) {
-        this.tistory = tistory;
+        this.status = tistory.status;
+        this.item = tistory.item;
     }
 
+    /**
+     *
+     * @returns {boolean}
+     */
     isNotOk () {
         return !this.isOk();
     }
 
+    /**
+     *
+     * @returns {boolean}
+     */
     isOk () {
         return this.status === "200";
     }
