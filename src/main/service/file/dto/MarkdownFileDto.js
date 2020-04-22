@@ -1,4 +1,4 @@
-class LocalFileDto {
+class MarkdownFileDto {
 
     /**
      * @param {string} path
@@ -12,4 +12,4 @@ class LocalFileDto {
     }
 }
 
-export {LocalFileDto};
+export {MarkdownFileDto};

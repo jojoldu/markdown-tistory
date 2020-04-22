@@ -1,5 +1,7 @@
 import {logger} from '../../utils/logger';
-import {LocalFileDto} from './LocalFileDto';
+import {MarkdownFileDto} from './dto/MarkdownFileDto';
+import FilePath from 'src/main/utils/FilePath';
+import {BlogFileDto} from "./dto/BlogFileDto";
 
 const fs = require('fs-extra')
 const path = require('path')
@@ -9,13 +11,23 @@ class FileService {
     /**
      *
      * @param {string} filePath
-     * @returns {LocalFileDto}
+     * @returns {MarkdownFileDto}
      */
-    async getMarkdownFile(filePath) {
-        const markdownPath = this.getMarkdownFilePath(filePath);
-        const markdownName = this.getMarkdownFileName(markdownPath);
+    async getMarkdown(filePath) {
+        const markdownPath = this._getMarkdownFilePath(filePath);
+        const markdownName = this._getMarkdownFileName(markdownPath);
         const content = await fs.readFile(markdownPath, 'utf8');
-        return new LocalFileDto(markdownPath, markdownName, content);
+        return new MarkdownFileDto(markdownPath, markdownName, content);
+    }
+
+    async getBlog() {
+        const jsonPath = `${FilePath.json}${fileName}.json`;
+        const blog = await this._getJson(jsonPath);
+        return new BlogFileDto(blog.blogName, blog.clientId, blog.secretKey);
+    }
+
+    getAccessToken() {
+
     }
 
     /**
@@ -23,7 +35,7 @@ class FileService {
      * @param {string} filePath
      * @returns {string}
      */
-    getMarkdownFilePath(filePath) {
+    _getMarkdownFilePath(filePath) {
         if(filePath) {
             return filePath;
         }
@@ -45,13 +57,25 @@ class FileService {
      * @param {string} filePath
      * @returns {string}
      */
-    getMarkdownFileName (filePath) {
+    _getMarkdownFileName (filePath) {
         const removedExt = filePath.slice(0, filePath.length-3); // .md 제거
         return path.parse(removedExt).name;
+    }
+
+
+    async _getJson(jsonPath) {
+        try {
+            const jsonData = await fs.readFile(jsonPath, 'utf8');
+            return JSON.parse(jsonData);
+        } catch (err) {
+            logger.error(`There is no ${jsonPath}\n`);
+            logger.error(`Please run markdown-tistory init`);
+            logger.error(err);
+            process.exit();
+        }
     }
 }
 
 const fileService = new FileService();
-
 
 export {fileService};
