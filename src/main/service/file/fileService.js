@@ -2,6 +2,7 @@ import {logger} from '../../utils/logger';
 import {MarkdownFileDto} from './dto/MarkdownFileDto';
 import FilePath from 'src/main/utils/FilePath';
 import {BlogFileDto} from "./dto/BlogFileDto";
+import {AccessTokenFileDto} from "./dto/AccessTokenFileDto";
 
 const fs = require('fs-extra')
 const path = require('path')
@@ -11,7 +12,7 @@ class FileService {
     /**
      *
      * @param {string} filePath
-     * @returns {MarkdownFileDto}
+     * @returns {Promise<MarkdownFileDto>}
      */
     async getMarkdown(filePath) {
         const markdownPath = this._getMarkdownFilePath(filePath);
@@ -20,14 +21,24 @@ class FileService {
         return new MarkdownFileDto(markdownPath, markdownName, content);
     }
 
+    /**
+     *
+     * @returns {Promise<BlogFileDto>}
+     */
     async getBlog() {
-        const jsonPath = `${FilePath.json}${fileName}.json`;
+        const jsonPath = `${FilePath.json}blog.json`;
         const blog = await this._getJson(jsonPath);
         return new BlogFileDto(blog.blogName, blog.clientId, blog.secretKey);
     }
 
-    getAccessToken() {
-
+    /**
+     *
+     * @returns {Promise<AccessTokenFileDto>}
+     */
+    async getAccessToken() {
+        const jsonPath = `${FilePath.json}token.json`;
+        const accessToken = await this._getJson(jsonPath);
+        return new AccessTokenFileDto(accessToken);
     }
 
     /**
@@ -63,6 +74,12 @@ class FileService {
     }
 
 
+    /**
+     *
+     * @param {string} jsonPath
+     * @returns {Promise<any>}
+     * @private
+     */
     async _getJson(jsonPath) {
         try {
             const jsonData = await fs.readFile(jsonPath, 'utf8');
