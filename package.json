@@ -4,6 +4,7 @@
   "description": "markdown supporter for tistory blog",
   "main": "./lib/index.js",
   "type": "module",
+  "unmockedModulePathPatterns": ["jasmine-expect"],
   "jest": {
     "verbose": true,
     "modulePaths": [
@@ -59,6 +60,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.9.5",
     "babel-jest": "^25.3.0",
+    "jasmine-expect": "^4.0.3",
     "jest": "^25.3.0",
     "mocha": "^5.2.0"
   }
