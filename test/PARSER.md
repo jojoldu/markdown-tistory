@@ -37,11 +37,10 @@ markdown-tistory write markdown-tistory write markdown-tistory write markdown-ti
 
 등록이 성공하면 해당 내용은 **비공개**로 포스팅 되니, 본인 블로그의 관리자 페이지로 이동하여 게시글을 공개로 전환한다.
 
-### 주의사항
-* 마크다운에서 사용되는 이미지 위치는 마크다운 파일을 기준으로 작성되어야 한다.
-
-**Good**
+### 이미지 테스트
 
 ![티스토리](../images/티스토리.png)
 
 ![](../images/티스토리클라이언트.png)
+
+![URL](https://t1.daumcdn.net/cfile/tistory/9975AC495E9CEA2F26)
