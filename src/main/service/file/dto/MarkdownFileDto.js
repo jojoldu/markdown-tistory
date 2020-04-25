@@ -1,14 +1,24 @@
 class MarkdownFileDto {
 
     /**
-     * @param {string} path
+     * @param {string} fullPath
      * @param {string} title
      * @param {string} content
      */
-    constructor(path, title, content) {
-        this.path = path;
+    constructor(fullPath, title, content) {
+        this.fullPath = fullPath;
         this.title = title;
         this.content = content;
+    }
+
+    /**
+     *
+     * @param {Array<ImagePathUrlDto>} imageUrls
+     */
+    replaceAllImagePath(imageUrls) {
+        for (let i = 0, length = imageUrls.length; i < length; i++) {
+            this.content = this.content.replace(imageUrls[i].localFilePath, imageUrls[i].tistoryFileUrl);
+        }
     }
 }
 

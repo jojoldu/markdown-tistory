@@ -42,6 +42,6 @@ markdown-tistory write markdown-tistory write markdown-tistory write markdown-ti
 
 **Good**
 
-![티스토리](../images/티스토리.png)
+![티스토리](./images/티스토리.png)
 
-![](../images/티스토리클라이언트.png)
+![](./images/티스토리클라이언트.png)

@@ -12,7 +12,7 @@
 class FileResponseDto {
     constructor(tistory) {
         this.status = tistory.status;
-        this.postId = tistory.postId;
+        this.url = tistory.url;
         this.replacer = tistory.replacer;
     }
 

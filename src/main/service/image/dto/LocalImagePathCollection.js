@@ -1,5 +1,9 @@
 const localImageRegex = new RegExp("^(http|https)://", "i")
 
+/**
+ * @class LocalImagePathCollection
+ * @property _isLocalImage {Array<string>}
+ */
 class LocalImagePathCollection {
 
     /**
