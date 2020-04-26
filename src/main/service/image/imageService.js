@@ -23,6 +23,13 @@ class ImageService {
         return markdownFileDto;
     }
 
+    /**
+     *
+     * @param markdownPath
+     * @param localImages
+     * @returns {Promise<ImagePathUrlDto[]>}
+     * @private
+     */
     async _toTistoryUrl(markdownPath, localImages) {
         const blogJson = await fileService.getBlog();
         const tokenJson = await fileService.getAccessToken();

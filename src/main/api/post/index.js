@@ -4,6 +4,8 @@ import {PostItemResponseDto} from './item/PostItemResponseDto';
 import {PostSaveResponseDto} from "./save/PostSaveResponseDto";
 import {PostUpdateResponseDto} from "./update/PostUpdateResponseDto";
 import {FileResponseDto} from "./file/FileResponseDto";
+import {post} from 'request-promise';
+import {logger} from "../../utils/logger";
 
 const querystring = require('querystring');
 
@@ -41,8 +43,9 @@ function save(body) {
  * @param {PostUpdateRequestDto} body
  * @returns {PostUpdateResponseDto}
  */
-function update(body) {
-    return new PostUpdateResponseDto(instance.post('/post/modify', body));
+async function update(body) {
+    const response = await instance.post('/post/modify', body);
+    return new PostUpdateResponseDto(response.tistory);
 }
 
 /**
@@ -50,8 +53,17 @@ function update(body) {
  * @param {FileRequestDto} body
  * @returns {FileResponseDto}
  */
-function uploadFile(body) {
-    return new FileResponseDto(instance.post('/post/attach', body));
+async function uploadFile(body) {
+    const url = `https://www.tistory.com/apis/post/attach`;
+    try{
+        const response = await post({url: url, formData: body,  json: true});
+        return new FileResponseDto(response.tistory);
+    } catch (err) {
+        const response = err.error.tistory;
+        logger.error(`API 호출에 실패하였습니다. url=${url} status=${response.status} message=${response.error_message}`);
+        throw err;
+    }
+
 }
 
 export {getAll, get, save, update, uploadFile}

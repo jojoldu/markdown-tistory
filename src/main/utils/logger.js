@@ -6,17 +6,34 @@
 
 import chalk from 'chalk';
 
-const logger = {
-    error: (content) => {
+class Logger {
+
+    /**
+     *
+     * @param {string} content
+     */
+    error(content) {
         console.log(chalk.red(content));
-    },
-    info: (content) => {
+    }
+
+    /**
+     *
+     * @param {string} content
+     */
+    info(content) {
         console.log(chalk.yellow(content));
-    },
-    debug: (content) => {
+    }
+
+    /**
+     *
+     * @param {string} content
+     */
+    debug(content) {
         console.log(chalk.gray(content));
     }
-};
+}
+
+const logger = new Logger();
 
 export {logger}
 

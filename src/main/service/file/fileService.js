@@ -37,8 +37,8 @@ class FileService {
      */
     async getAccessToken() {
         const jsonPath = `${FilePath.json}token.json`;
-        const accessToken = await this._getJson(jsonPath);
-        return new AccessTokenFileDto(accessToken);
+        const tokenJson = await this._getJson(jsonPath);
+        return new AccessTokenFileDto(tokenJson.accessToken);
     }
 
     /**
