@@ -11,22 +11,24 @@ const querystring = require('querystring');
 
 /**
  *
- * @param {PostListRequestDto} options
+ * @param {PostListRequestDto} requestDto
  * @returns {PostListResponseDto}
  */
-function getAll(options) {
-    const queryString = querystring.stringify(options);
-    return new PostListResponseDto(instance.get(`/post/list?${queryString}`));
+async function getAll(requestDto) {
+    const queryString = querystring.stringify(requestDto);
+    const response = await instance.get(`/post/list?${queryString}`);
+    return new PostListResponseDto(response.tistory);
 }
 
 /**
  *
- * @param {PostUpdateRequestDto} options
+ * @param {PostUpdateRequestDto} requestDto
  * @returns {PostItemResponseDto}
  */
-function get(options) {
-    const queryString = querystring.stringify(options);
-    return new PostItemResponseDto(instance.get(`/post/read?${queryString}`));
+async function get(requestDto) {
+    const queryString = querystring.stringify(requestDto);
+    const response = await instance.get(`/post/read?${queryString}`);
+    return new PostItemResponseDto(response);
 }
 
 /**
@@ -34,7 +36,7 @@ function get(options) {
  * @param {PostSaveRequestDto} body
  * @returns {PostSaveResponseDto}
  */
-function save(body) {
+async function save(body) {
     return new PostSaveResponseDto(instance.post('/post/write', body));
 }
 
