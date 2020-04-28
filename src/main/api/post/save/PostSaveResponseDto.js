@@ -1,3 +1,5 @@
+import {ResponseDto} from 'src/main/api/ResponseDto';
+
 /**
  *
  {
@@ -9,27 +11,12 @@
 }
  * @type {PostSaveResponseDto}
  */
-class PostSaveResponseDto {
+
+class PostSaveResponseDto extends ResponseDto{
     constructor(tistory) {
-        this.status = tistory.status;
+        super(tistory.status)
         this.postId = tistory.postId;
         this.url = tistory.url;
-    }
-
-    /**
-     *
-     * @returns {boolean}
-     */
-    isNotOk () {
-        return !this.isOk();
-    }
-
-    /**
-     *
-     * @returns {boolean}
-     */
-    isOk () {
-        return this.status === "200";
     }
 }
 

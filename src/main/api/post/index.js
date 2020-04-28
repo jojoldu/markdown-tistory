@@ -17,7 +17,7 @@ const querystring = require('querystring');
 async function getAll(requestDto) {
     const queryString = querystring.stringify(requestDto);
     const response = await instance.get(`/post/list?${queryString}`);
-    return new PostListResponseDto(response.tistory);
+    return new PostListResponseDto(response.data.tistory);
 }
 
 /**
@@ -37,7 +37,8 @@ async function get(requestDto) {
  * @returns {PostSaveResponseDto}
  */
 async function save(body) {
-    return new PostSaveResponseDto(instance.post('/post/write', body));
+    const response = await instance.post('/post/write', body);
+    return new PostSaveResponseDto(response.data.tistory);
 }
 
 /**
@@ -47,7 +48,7 @@ async function save(body) {
  */
 async function update(body) {
     const response = await instance.post('/post/modify', body);
-    return new PostUpdateResponseDto(response.tistory);
+    return new PostUpdateResponseDto(response.data.tistory);
 }
 
 /**
