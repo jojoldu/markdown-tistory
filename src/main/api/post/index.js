@@ -22,13 +22,13 @@ async function getAll(requestDto) {
 
 /**
  *
- * @param {PostUpdateRequestDto} requestDto
+ * @param {PostItemRequestDto} requestDto
  * @returns {PostItemResponseDto}
  */
 async function get(requestDto) {
     const queryString = querystring.stringify(requestDto);
     const response = await instance.get(`/post/read?${queryString}`);
-    return new PostItemResponseDto(response);
+    return new PostItemResponseDto(response.data.tistory);
 }
 
 /**

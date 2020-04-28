@@ -16,7 +16,11 @@ function init(contentType) {
 
 function errorResponseHandler(error) {
     const response = error.response;
-    logger.error(`API 요청이 실패했습니다. url=${response.config.url} message=${response.data.tistory.error_message}`);
+    if(response.status === 500) {
+        logger.error(`티스토리 API 시스템에 오류가 발생하였습니다. 고객센터 url=https://cs.daum.net/faq/173.html`);
+    } else {
+        logger.error(`API 요청이 실패했습니다. url=${response.config.url} message=${response.data.tistory.error_message}`);
+    }
     return Promise.reject(response);
 }
 
