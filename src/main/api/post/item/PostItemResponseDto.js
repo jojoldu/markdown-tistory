@@ -1,3 +1,5 @@
+import {ResponseDto} from "../../ResponseDto";
+
 /**
  *
  {
@@ -25,27 +27,12 @@
 }
  * @type {PostItemResponseDto}
  */
-class PostItemResponseDto {
+class PostItemResponseDto extends ResponseDto{
     constructor(tistory) {
-        this.status = tistory.status;
+        super(tistory.status);
         this.item = tistory.item;
     }
 
-    /**
-     *
-     * @returns {boolean}
-     */
-    isNotOk () {
-        return !this.isOk();
-    }
-
-    /**
-     *
-     * @returns {boolean}
-     */
-    isOk () {
-        return this.status === "200";
-    }
 }
 
 export {PostItemResponseDto};

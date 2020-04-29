@@ -1,3 +1,5 @@
+import {ResponseDto} from "../../ResponseDto";
+
 /**
  *
  {
@@ -9,27 +11,11 @@
 }
  * @type {FileResponseDto}
  */
-class FileResponseDto {
+class FileResponseDto extends ResponseDto {
     constructor(tistory) {
-        this.status = tistory.status;
+        super(tistory.status);
         this.url = tistory.url;
         this.replacer = tistory.replacer;
-    }
-
-    /**
-     *
-     * @returns {boolean}
-     */
-    isNotOk () {
-        return !this.isOk();
-    }
-
-    /**
-     *
-     * @returns {boolean}
-     */
-    isOk () {
-        return this.status === "200";
     }
 }
 
