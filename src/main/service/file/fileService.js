@@ -12,13 +12,12 @@ class FileService {
     /**
      *
      * @param {string} filePath
-     * @returns {Promise<MarkdownFileDto>}
+     * @returns {MarkdownFileDto}
      */
     async getMarkdown(filePath) {
-        const markdownPath = this._getMarkdownFilePath(filePath);
-        const markdownName = this._getMarkdownFileName(markdownPath);
-        const content = await fs.readFile(markdownPath, 'utf8');
-        return new MarkdownFileDto(markdownPath, markdownName, content);
+        const markdownName = this._getMarkdownFileName(filePath);
+        const content = await fs.readFile(filePath, 'utf8');
+        return new MarkdownFileDto(filePath, markdownName, content);
     }
 
     /**
@@ -43,24 +42,20 @@ class FileService {
 
     /**
      *
-     * @param {string} filePath
      * @returns {string}
      */
-    _getMarkdownFilePath(filePath) {
-        if(filePath) {
-            return filePath;
-        }
-
+    _getDefaultMarkdownPath() {
+        const dir = process.cwd();
         const filesInCurrentDirectory = fs.readdirSync(dir);
         const mdName = filesInCurrentDirectory.filter((file) => path.extname(file) === '.md');
 
         if(!mdName) {
             const message = "There are no Markdown files in the current directory.";
             logger.error(message);
-            throw new Error(message);
+            return '';
         }
 
-        return process.cwd()+'/'+mdName;
+        return dir+'/'+mdName;
     }
 
     /**

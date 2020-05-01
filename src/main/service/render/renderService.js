@@ -13,16 +13,18 @@ class RenderService {
 
     /**
      *
-     * @param {string} content
+     * @param {MarkdownRenderDto} markdownRenderDto
      * @returns {string}
      */
-    toHtml(content) {
-        if(isBlank(content)) {
+    toHtml(markdownRenderDto) {
+        const markdownContent = markdownRenderDto.content;
+        if(isBlank(markdownContent)) {
             logger.info('Markdown Content is Empty.');
-            return content;
+            return markdownContent;
         }
-        
-        return `<article class="markdown-body entry-content" itemprop="text"> ${showDown.makeHtml(content)} </article>`;
+
+        const html = showDown.makeHtml(markdownContent);
+        return `<article class="markdown-body entry-content" itemprop="text"> ${html} </article>`;
     }
 
 }

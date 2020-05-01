@@ -10,7 +10,7 @@ class PostItemRequestDto extends RequestDto {
      *
      * @param {string} accessToken
      * @param {string} blogName jojoldu.tistory => jojoldu
-     * @param {number} postId
+     * @param {string} postId
      */
     constructor(accessToken, blogName, postId) {
         super(accessToken, blogName);

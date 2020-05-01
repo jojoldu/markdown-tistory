@@ -13,7 +13,7 @@ class ImageService {
     /**
      *
      * @param {MarkdownFileDto} markdownFileDto
-     * @returns {Promise<MarkdownFileDto>}
+     * @returns {MarkdownFileDto}
      */
     async exchangeImagePath(markdownFileDto) {
         const localImages = new LocalImagePathCollection(markdownFileDto.content).localImages;
