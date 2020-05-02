@@ -14,16 +14,35 @@ class PostUpdateRequestDto extends RequestDto {
      * @param {string} content
      * @param {string} categoryId
      * @param {string[]} tags
-     * @param {number} postId
+     * @param {string} postId
      */
     constructor(accessToken, blogName, title, content, categoryId, tags, postId) {
         super(accessToken, blogName);
         this.title = title;
         this.content = content;
         this.categoryId = categoryId;
-        this.tag = tags? tags.join(',') : ''
+        this.tag = tags ? tags.join(',') : ''
         this.postId = postId;
         this.visibility = 0;
+    }
+
+    /**
+     *
+     * @param {string} accessToken
+     * @param {string} blogName
+     * @param {Tistory} tistory
+     * @param {string} content
+     */
+    static of(accessToken, blogName, tistory, content) {
+        return new PostUpdateRequestDto(
+            accessToken,
+            blogName,
+            tistory.titie,
+            content,
+            tistory.categoryId,
+            tistory.tags,
+            tistory.id
+        );
     }
 }
 

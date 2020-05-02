@@ -1,7 +1,6 @@
 import {ResponseDto} from "../../ResponseDto";
 
 /**
- *
  {
   "tistory":{
     "status":"200",
@@ -27,10 +26,42 @@ import {ResponseDto} from "../../ResponseDto";
 }
  * @type {PostItemResponseDto}
  */
-class PostItemResponseDto extends ResponseDto{
+class PostItemResponseDto extends ResponseDto {
     constructor(tistory) {
         super(tistory.status);
         this.item = tistory.item;
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
+    getTitle() {
+        return this.item.titie;
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
+    getCategoryId() {
+        return this.item.categoryId;
+    }
+
+    /**
+     *
+     * @returns {string[]}
+     */
+    getTags() {
+        return this.item.tags;
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
+    getId() {
+        return this.item.id;
     }
 
 }

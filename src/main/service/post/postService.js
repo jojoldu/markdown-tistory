@@ -3,6 +3,10 @@ import {get, save, update} from 'src/main/api/post';
 import {PostItemRequestDto} from "../../api/post/item/PostItemRequestDto";
 import {imageService} from "../image/imageService";
 import {PostSaveRequestDto} from "../../api/post/save/PostSaveRequestDto";
+import {Tistory} from "../../entity/Tistory";
+import {PostUpdateRequestDto} from "../../api/post/update/PostUpdateRequestDto";
+import {renderService} from "../render/renderService";
+import {MarkdownRenderDto} from "../render/dto/MarkdownRenderDto";
 
 const {isBlank} = require('npm-stringutils');
 
@@ -29,21 +33,53 @@ class PostService {
      * @returns {void}
      */
     async write(path) {
-        const markdownPath = this._getOrDefaultMarkdownPath(path);
-        const markdownDto = imageService.exchangeImagePath(fileService.getMarkdown(markdownPath));
+        const markdown = this._getMarkdown(path);
+        const htmlContent = renderService.toHtml(new MarkdownRenderDto(markdown.content, ''));
         const tokenJson = await fileService.getAccessToken();
         const blogJson = await fileService.getBlog();
 
         save(new PostSaveRequestDto(
             tokenJson.accessToken,
             blogJson.blogName,
-            markdownDto.title,
-            markdownDto.content));
+            markdown.title,
+            htmlContent));
     }
 
+    /**
+     *
+     * @param {string} path
+     * @param {string} postId
+     * @returns {void}
+     */
     async update(path, postId) {
+        const markdown = this._getMarkdown(path);
+        const htmlContent = renderService.toHtml(new MarkdownRenderDto(markdown.content, ''));
+        const blogInfo = this.get(postId);
+        const tistory = new Tistory(
+            blogInfo.getId(),
+            blogInfo.getTitle(),
+            blogInfo.getCategoryId(),
+            blogInfo.getTags());
+
+        const tokenJson = await fileService.getAccessToken();
+        const blogJson = await fileService.getBlog();
+
+        update(PostUpdateRequestDto.of(
+            tokenJson.accessToken,
+            blogJson.blogName,
+            tistory,
+            htmlContent
+        ));
+    }
+
+    async _getMarkdown(path) {
         const markdownPath = this._getOrDefaultMarkdownPath(path);
-        const markdownDto = imageService.exchangeImagePath(fileService.getMarkdown(markdownPath));
+        const markdown = fileService.getMarkdown(markdownPath);
+        if(markdown.isEmptyContent()) {
+            throw new Error(`There are empty Markdown Content path=${markdown.fullPath}`);
+        }
+
+        return imageService.exchangeImagePath(markdown);
     }
 
     _getOrDefaultMarkdownPath(markdownPath) {

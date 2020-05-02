@@ -1,3 +1,5 @@
+const {isBlank} = require('npm-stringutils');
+
 class MarkdownFileDto {
 
     /**
@@ -19,6 +21,10 @@ class MarkdownFileDto {
         for (let i = 0, length = imageUrls.length; i < length; i++) {
             this.content = this.content.replace(imageUrls[i].localFilePath, imageUrls[i].tistoryFileUrl);
         }
+    }
+
+    isEmptyContent() {
+        return isBlank(this.content);
     }
 }
 
