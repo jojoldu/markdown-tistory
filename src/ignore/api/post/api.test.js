@@ -3,6 +3,7 @@ import {getAll, get, save, update} from 'src/main/api/post/index';
 import {PostListRequestDto} from "src/main/api/post/list/PostListRequestDto";
 import {PostItemRequestDto} from "src/main/api/post/item/PostItemRequestDto";
 import {PostSaveRequestDto} from "src/main/api/post/save/PostSaveRequestDto";
+import {PostUpdateRequestDto} from "../../../main/api/post/update/PostUpdateRequestDto";
 
 let tokenJson;
 let blogJson;
@@ -29,6 +30,21 @@ test("마크다운 내용을 포스팅 한다", async () => {
     const path = '/Users/idong-uk/Documents/git/markdown-tistory/src/test/resources/NO_IMAGE.md';
     const markdownFileDto = await fileService.getMarkdown(path);
     const response = await save(new PostSaveRequestDto(tokenJson.accessToken, blogJson.blogName, markdownFileDto.title, markdownFileDto.content));
+
+    expect(response.isOk()).toBe(true);
+})
+
+test("테스트 글을 수정한다", async () => {
+    const path = '/Users/idong-uk/Documents/git/markdown-tistory/src/test/resources/NO_IMAGE.md';
+    const markdownFileDto = await fileService.getMarkdown(path);
+    const response = await update(new PostUpdateRequestDto(
+        tokenJson.accessToken,
+        blogJson.blogName,
+        markdownFileDto.title,
+        markdownFileDto.content,
+        '',
+        ['테스트', 'markdown-tistory'],
+        '499'));
 
     expect(response.isOk()).toBe(true);
 })

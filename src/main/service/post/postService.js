@@ -30,15 +30,15 @@ class PostService {
     /**
      *
      * @param {string} path
-     * @returns {void}
+     * @returns {PostSaveResponseDto}
      */
     async write(path) {
-        const markdown = this._getMarkdown(path);
+        const markdown = await this._getMarkdown(path);
         const htmlContent = renderService.toHtml(new MarkdownRenderDto(markdown.content, ''));
         const tokenJson = await fileService.getAccessToken();
         const blogJson = await fileService.getBlog();
 
-        save(new PostSaveRequestDto(
+        return save(new PostSaveRequestDto(
             tokenJson.accessToken,
             blogJson.blogName,
             markdown.title,
@@ -49,12 +49,12 @@ class PostService {
      *
      * @param {string} path
      * @param {string} postId
-     * @returns {void}
+     * @returns {PostUpdateResponseDto}
      */
     async update(path, postId) {
-        const markdown = this._getMarkdown(path);
+        const markdown = await this._getMarkdown(path);
         const htmlContent = renderService.toHtml(new MarkdownRenderDto(markdown.content, ''));
-        const blogInfo = this.get(postId);
+        const blogInfo = await this.get(postId);
         const tistory = new Tistory(
             blogInfo.getId(),
             blogInfo.getTitle(),
@@ -64,7 +64,7 @@ class PostService {
         const tokenJson = await fileService.getAccessToken();
         const blogJson = await fileService.getBlog();
 
-        update(PostUpdateRequestDto.of(
+        return update(PostUpdateRequestDto.of(
             tokenJson.accessToken,
             blogJson.blogName,
             tistory,
@@ -74,7 +74,7 @@ class PostService {
 
     async _getMarkdown(path) {
         const markdownPath = this._getOrDefaultMarkdownPath(path);
-        const markdown = fileService.getMarkdown(markdownPath);
+        const markdown = await fileService.getMarkdown(markdownPath);
         if(markdown.isEmptyContent()) {
             throw new Error(`There are empty Markdown Content path=${markdown.fullPath}`);
         }

@@ -53,7 +53,11 @@ class PostItemResponseDto extends ResponseDto {
      * @returns {string[]}
      */
     getTags() {
-        return this.item.tags;
+        if(this.item.tags) {
+            return this.item.tags.tag;
+        }
+        
+        return [];
     }
 
     /**
