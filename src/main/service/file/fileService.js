@@ -25,7 +25,7 @@ class FileService {
      * @returns {Promise<BlogFileDto>}
      */
     async getBlog() {
-        const jsonPath = `${FilePath.json}blog.json`;
+        const jsonPath = `${FilePath.blogPath}`;
         const blog = await this._getJson(jsonPath);
         return new BlogFileDto(blog.blogName, blog.clientId, blog.secretKey);
     }
@@ -35,7 +35,7 @@ class FileService {
      * @returns {Promise<AccessTokenFileDto>}
      */
     async getAccessToken() {
-        const jsonPath = `${FilePath.json}token.json`;
+        const jsonPath = `${FilePath.tokenPath}`;
         const tokenJson = await this._getJson(jsonPath);
         return new AccessTokenFileDto(tokenJson.accessToken);
     }
