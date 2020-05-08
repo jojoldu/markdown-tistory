@@ -39,16 +39,7 @@ class ImageService {
 
         return Promise.all(localImages.map(async (localImage) => {
             const imageFullPath = this._getImageFullPath(markdownPath, localImage);
-            const isExist = await fs.exists(imageFullPath);
-            if (!isExist) {
-                logger.info('Not Found File: ' + imageFullPath);
-                return false;
-            }
-
-            const file = await fs.createReadStream(imageFullPath);
-            const body = new FileRequestDto(accessToken, blogName, file);
-
-            const response = await uploadFile(body);
+            const response = await this._uploadFile(imageFullPath, accessToken, blogName);
 
             if (response.isNotOk()) {
                 return false;
@@ -56,6 +47,19 @@ class ImageService {
 
             return new ImagePathUrlDto(localImage, response.url);
         }));
+    }
+
+    async _uploadFile(imageFullPath, accessToken, blogName) {
+        const isExist = await fs.exists(imageFullPath);
+        if (!isExist) {
+            logger.info('Not Found File: ' + imageFullPath);
+            return false;
+        }
+
+        const file = await fs.createReadStream(imageFullPath);
+        const body = new FileRequestDto(accessToken, blogName, file);
+
+        return uploadFile(body);
     }
 
     _getImageFullPath(markdownPath, imagePath) {
