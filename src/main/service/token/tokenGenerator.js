@@ -1,5 +1,6 @@
 import {logger} from '../../utils/logger';
-const { isBlank } = require('npm-stringutils');
+
+const {isBlank} = require('npm-stringutils');
 const fs = require('fs-extra');
 import FilePath from 'src/main/utils/FilePath';
 
@@ -16,14 +17,31 @@ class TokenGenerator {
 
         try {
             return await fs.writeFile(FilePath.blogPath, content, 'utf8');
-        } catch (err) {
-            logger.red('An error occurred while issuing blog.json ');
-            throw err;
+        } catch (e) {
+            logger.error('An error occurred while publishing blog.json ');
+            throw e;
         }
     }
 
-    saveAccessToken() {
+    /**
+     *
+     * @param {string} accessToken
+     * @returns {Promise<void>}
+     */
+    async saveAccessToken(accessToken) {
+        if(isBlank(accessToken)) {
+            logger.error('Access token Empty');
+            throw new Error();
+        }
 
+        try {
+            const content = JSON.stringify({"accessToken": accessToken});
+            await fs.writeFile(FilePath.tokenPath, content, 'utf8');
+            logger.info('Access token published.');
+        } catch (e) {
+            logger.error('There was a problem creating the access token file.\n');
+            throw e;
+        }
     }
 }
 
