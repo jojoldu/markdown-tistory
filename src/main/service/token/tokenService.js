@@ -1,13 +1,11 @@
-import {fileService} from "../file/fileService";
-import {tokenGenerator} from "./tokenGenerator";
 import {EmbeddedServer} from "./EmbeddedServer";
 
 class TokenService {
 
-    async publishAccessToken() {
-        const blogJson = await fileService.getBlog();
+    async saveAccessToken() {
         const embeddedServer = new EmbeddedServer();
-
+        embeddedServer.runRedirectServer();
+        await embeddedServer.getAuthorizationCode();
     }
 
 }
