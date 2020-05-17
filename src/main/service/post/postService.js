@@ -1,14 +1,13 @@
-import {fileService} from "../file/fileService";
-import {get, save, update} from 'src/main/api/post';
-import {PostItemRequestDto} from "../../api/post/item/PostItemRequestDto";
-import {imageService} from "../image/imageService";
-import {PostSaveRequestDto} from "../../api/post/save/PostSaveRequestDto";
-import {Tistory} from "../../entity/Tistory";
-import {PostUpdateRequestDto} from "../../api/post/update/PostUpdateRequestDto";
-import {renderService} from "../render/renderService";
-import {MarkdownRenderDto} from "../render/dto/MarkdownRenderDto";
-
-const {isBlank} = require('npm-stringutils');
+import {fileService} from "../file/fileService.js";
+import {get, save, update} from '../../api/post/index.js';
+import {PostItemRequestDto} from "../../api/post/item/PostItemRequestDto.js";
+import {imageService} from "../image/imageService.js";
+import {PostSaveRequestDto} from "../../api/post/save/PostSaveRequestDto.js";
+import {Tistory} from "../../entity/Tistory.js";
+import {PostUpdateRequestDto} from "../../api/post/update/PostUpdateRequestDto.js";
+import {renderService} from "../render/renderService.js";
+import {MarkdownRenderDto} from "../render/dto/MarkdownRenderDto.js";
+import {stringUtils} from '../../utils/stringUtils.js';
 
 class PostService {
 
@@ -88,7 +87,7 @@ class PostService {
         }
 
         markdownPath = fileService._getDefaultMarkdownPath();
-        if (isBlank(markdownPath)) {
+        if (stringUtils.isBlank(markdownPath)) {
             throw new Error('There are no Markdown file in the current directory');
         }
 

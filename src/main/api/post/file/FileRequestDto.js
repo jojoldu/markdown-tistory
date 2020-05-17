@@ -1,4 +1,4 @@
-import {RequestDto} from 'src/main/api/RequestDto';
+import {RequestDto} from '../../RequestDto.js';
 
 /**
  *

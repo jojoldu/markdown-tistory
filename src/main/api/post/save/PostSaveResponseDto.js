@@ -1,4 +1,4 @@
-import {ResponseDto} from 'src/main/api/ResponseDto';
+import {ResponseDto} from '../../ResponseDto.js';
 
 /**
  *

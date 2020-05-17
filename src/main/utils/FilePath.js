@@ -1,4 +1,5 @@
-const path = require('path');
+import * as path from 'path';
+
 class FilePath {
     constructor() {
         const _userHome = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];

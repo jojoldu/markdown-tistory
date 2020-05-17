@@ -1,8 +1,9 @@
-import {logger} from "./utils/logger";
-import {tokenService} from "./service/token/tokenService";
+import {logger} from "./utils/logger.js";
+import {tokenService} from "./service/token/tokenService.js";
 
 async function cli() {
     const command = process.argv[2];
+    logger.debug('>>>>>>>>> cli start');
 
     if(command === 'token') {
         await tokenService.saveAccessToken();

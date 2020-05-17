@@ -1,7 +1,6 @@
-import {logger} from '../../utils/logger';
-const { isBlank } = require('npm-stringutils');
-
-const Showdown = require('showdown');
+import {logger} from '../../utils/logger.js';
+import {stringUtils} from '../../utils/stringUtils.js';
+import * as Showdown from 'showdown';
 
 const showDown = new Showdown.Converter();
 showDown.setOption('omitExtraWLInCodeBlocks', true);
@@ -18,7 +17,7 @@ class RenderService {
      */
     toHtml(markdownRenderDto) {
         const markdownContent = markdownRenderDto.content;
-        if(isBlank(markdownContent)) {
+        if(stringUtils.isBlank(markdownContent)) {
             logger.info('Markdown Content is Empty.');
             return markdownContent;
         }

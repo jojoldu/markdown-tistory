@@ -1,8 +1,7 @@
-import {instance} from 'src/main/api/instance';
-import {logger} from "../../utils/logger";
+import {instance} from '../instance.js';
+import {logger} from "../../utils/logger.js";
 
-const querystring = require('querystring');
-
+import * as querystring from 'query-string';
 
 /**
  *

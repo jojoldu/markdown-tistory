@@ -1,5 +1,5 @@
-import {logger} from "../../../utils/logger";
-const { isBlank } = require('npm-stringutils');
+import {logger} from "../../../utils/logger.js";
+import {stringUtils} from '../../../utils/stringUtils.js';
 
 class MarkdownRenderDto {
 
@@ -12,7 +12,7 @@ class MarkdownRenderDto {
     }
 
     _replaceAdCode (markdownContent, adCode) {
-        if(isBlank(adCode)) {
+        if(stringUtils.isBlank(adCode)) {
             logger.info('AdSenseCode is Empty.');
             return markdownContent;
         }

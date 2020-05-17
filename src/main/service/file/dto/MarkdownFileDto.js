@@ -1,4 +1,5 @@
-const {isBlank} = require('npm-stringutils');
+import {stringUtils} from '../../../utils/stringUtils.js';
+
 
 class MarkdownFileDto {
 
@@ -24,7 +25,7 @@ class MarkdownFileDto {
     }
 
     isEmptyContent() {
-        return isBlank(this.content);
+        return stringUtils.isBlank(this.content);
     }
 }
 

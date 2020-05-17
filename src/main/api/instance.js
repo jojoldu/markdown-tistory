@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {logger} from 'src/main/utils/logger';
+import {logger} from '../utils/logger.js';
 
 const BASE_URL = 'https://www.tistory.com/apis';
 const TIME_OUT = 60000;

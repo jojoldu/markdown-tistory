@@ -1,21 +1,20 @@
 
-import {logger} from '../../utils/logger';
-import {getAccessToken} from 'src/main/api/token';
-import {fileService} from "../file/fileService";
-import {AccessTokenRequestDto} from "../../api/token/AccessTokenRequestDto";
+import {logger} from '../../utils/logger.js';
+import {getAccessToken} from '../../api/token/index.js';
+import {fileService} from "../file/fileService.js";
+import {AccessTokenRequestDto} from "../../api/token/AccessTokenRequestDto.js";
+import express from 'express'
+import open from 'open'
 
-const express = require('express');
-const browserOpen = require('open');
-
+let app;
 class EmbeddedServer {
 
     constructor() {
         this.reqirectUrl = 'http://localhost:5000/callback';
-        this.app = null;
     }
 
     runRedirectServer() {
-        this.app = express();
+        app = express();
         app.listen(5000);
         app.get('/callback', async (req) => {
             const code = req.query.code;
@@ -38,7 +37,7 @@ class EmbeddedServer {
         const blogJson = await fileService.getBlog();
         const parameter = `response_type=code&client_id=${blogJson.clientId}&redirect_uri=${this.reqirectUrl}`;
         const authorizeUrl = `https://www.tistory.com/oauth/authorize?${parameter}`;
-        browserOpen(authorizeUrl);
+        await open(authorizeUrl);
     }
 }
 

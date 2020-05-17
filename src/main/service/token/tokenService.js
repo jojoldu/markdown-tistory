@@ -1,4 +1,4 @@
-import {EmbeddedServer} from "./EmbeddedServer";
+import {EmbeddedServer} from "./EmbeddedServer.js";
 
 class TokenService {
 

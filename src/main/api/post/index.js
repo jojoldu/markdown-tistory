@@ -1,13 +1,13 @@
-import {instance} from 'src/main/api/instance';
-import {PostListResponseDto} from './list/PostListResponseDto';
-import {PostItemResponseDto} from './item/PostItemResponseDto';
-import {PostSaveResponseDto} from "./save/PostSaveResponseDto";
-import {PostUpdateResponseDto} from "./update/PostUpdateResponseDto";
-import {FileResponseDto} from "./file/FileResponseDto";
+import {instance} from '../instance.js';
+import {PostListResponseDto} from './list/PostListResponseDto.js';
+import {PostItemResponseDto} from './item/PostItemResponseDto.js';
+import {PostSaveResponseDto} from "./save/PostSaveResponseDto.js";
+import {PostUpdateResponseDto} from "./update/PostUpdateResponseDto.js";
+import {FileResponseDto} from "./file/FileResponseDto.js";
 import {post} from 'request-promise';
-import {logger} from "../../utils/logger";
+import {logger} from "../../utils/logger.js";
 
-const querystring = require('querystring');
+import * as querystring from 'query-string';
 
 /**
  *

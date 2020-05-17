@@ -1,12 +1,12 @@
-import {logger} from 'src/main/utils/logger';
-import {LocalImagePathCollection} from './dto/LocalImagePathCollection';
-import {fileService} from 'src/main/service/file/fileService';
-import {uploadFile} from 'src/main/api/post';
-import {FileRequestDto} from "../../api/post/file/FileRequestDto";
-import {ImagePathUrlDto} from "./dto/ImagePathUrlDto";
+import {logger} from '../../utils/logger.js';
+import {LocalImagePathCollection} from './dto/LocalImagePathCollection.js';
+import {fileService} from '../../service/file/fileService.js';
+import {uploadFile} from '../../api/post/index.js';
+import {FileRequestDto} from "../../api/post/file/FileRequestDto.js";
+import {ImagePathUrlDto} from "./dto/ImagePathUrlDto.js";
 
-const fs = require('fs-extra')
-const path = require('path')
+import fs from 'fs-extra';
+import * as path from 'path';
 
 class ImageService {
 

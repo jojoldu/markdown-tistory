@@ -1,4 +1,4 @@
-import {ResponseDto} from "../../ResponseDto";
+import {ResponseDto} from "../../ResponseDto.js";
 
 /**
  {
