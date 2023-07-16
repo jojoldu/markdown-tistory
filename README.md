@@ -188,6 +188,7 @@ markdown-tistory ad 에디터
 
 * 게시글의 제목은 **마크다운 파일명**을 기준으로 합니다.
 
+* mac에서 토큰 발급 시 `시스템 환경설정 > 공유 > AirPlay 수신 모드 해제` 후 진행해주세요. ([관련이슈](https://github.com/jojoldu/markdown-tistory/issues/19))
 
 ## 4. Release Note
 
